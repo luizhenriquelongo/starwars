@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <title>Starships</title>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Manufacturer</th>
+                        <th scope="col">length(m)</th>
+                        <th scope="col">Passengers</th>
+                        <th scope="col">Cargo Capacity</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for starship in starships %}
+                <tr>
+                    <td>{{ starship.name }}</td>
+                    <td>{{ starship.model }}</td>
+                    <td>{{ starship.manufacturer }}</td>
+                    <td>{{ starship.length }}</td>
+                    <td>{{ starship.passengers }}</td>
+                    <td>{{ starship.cargo_capacity }}</td>
+                    <td>{{ starship.starship_class }}</td>
+                    <td>{{ starship.score }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    </body>
+</html>

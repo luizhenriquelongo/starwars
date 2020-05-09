@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <title>Starwars</title>
+    </head>
+
+    <body>
+
+        <div class="container">
+            {% if last_filter %}
+            <p>Filtering by: {{ last_filter }}</p>
+            <form method="GET" action="/clear">
+                <button class="btn btn-primary" type="submit">Clear Filter</button>
+            </form>
+            {% endif %}
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"><a href="{{ url_for('order_by', key='name') }}">Name</a></th>
+                        <th scope="col"><a href="{{ url_for('order_by', key='height') }}">Height(cm)</a></th>
+                        <th scope="col"><a href="{{ url_for('order_by', key='mass') }}">Mass(kg)</a></th>
+                        <th scope="col"><a href="{{ url_for('order_by', key='gender') }}">Gender</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for person in people %}
+                <tr>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.height }}</td>
+                    <td>{{ person.mass }}</td>
+                    <td>{{ person.gender }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {{ paginate.info }}
+        {{ paginate.links }}
+    </div>
+
+    <div class="container">
+        <form method="POST" action='/'>
+            <label for="films">Filter by Film: </label>
+            <select name="films" onChange="this.form.submit()">
+                <option selected>Select a film</option>
+                {% for url, data in resources.get('films').items() %}
+                <option value="{{ url }},{{ data['title'] }}">{{ data['title'] }}</option>
+                {% endfor %}
+            </select>
+        </form>
+        
+        <form method="POST" action='/'>
+            <label for="starships">Filter by Starship: </label>
+            <select name="starships" onChange="this.form.submit()">
+                <option class='option' selected>Select a starship</option>
+                {% for url, data in resources.get('starships').items() %}
+                <option class='option' value="{{ url }},{{ data['name'] }}">{{ data['name'] }}</option>
+                {% endfor %}
+            </select>
+        </form>
+        
+        <form method="POST" action='/'>
+            <label for="planets">Filter by Planet: </label>
+            <select name="planets" onChange="this.form.submit()">
+                <option selected>Select a planet</option>
+                {% for url, data in resources.get('planets').items() %}
+                <option value="{{ url }},{{ data['name'] }}">{{ data['name'] }}</option>
+                {% endfor %}
+            </select>
+        </form>
+        
+        <form method="POST" action='/'>
+            <label for="vehicles">Filter by Vehicle: </label>
+            <select name="vehicles" onChange="this.form.submit()">
+                <option selected>Select a vehicle</option>
+                {% for url, data in resources.get('vehicles').items() %}
+                    <option value="{{ url }},{{ data['name'] }}">{{ data['name'] }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+
+    </body>
+</html>
