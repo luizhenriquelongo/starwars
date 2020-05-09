@@ -79,8 +79,3 @@ def starships():
     all_starships = list(resources['starships'].values())
     sorted_starships = sorted(all_starships, key=itemgetter('score'), reverse=True)
     return render_template("starships.html", starships=sorted_starships)
-
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
