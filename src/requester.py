@@ -2,8 +2,13 @@ import asyncio
 import requests
 from concurrent.futures import ThreadPoolExecutor
 
-import settings
-from utils import filter_data
+try:
+    from src import settings
+    from src.utils import filter_data, filter_resources
+    
+except ModuleNotFoundError:
+    import settings
+    from utils import filter_data, filter_resources
 
 
 def get_request_results(session, resource, page=1):
@@ -54,5 +59,6 @@ def get_all_resources():
     asyncio.set_event_loop(loop)
     future = asyncio.ensure_future(get_all())
 
-    return loop.run_until_complete(future)
+    resources = loop.run_until_complete(future)
+    return filter_resources(resources)
     

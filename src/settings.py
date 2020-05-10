@@ -1,9 +1,18 @@
-from utils import (
-    order_by_height,
-    order_by_mass,
-    order_by_gender,
-    order_by_name
-)
+try:
+    from src.utils import (
+        order_by_height,
+        order_by_mass,
+        order_by_gender,
+        order_by_name
+    )
+    
+except ModuleNotFoundError:
+    from utils import (
+        order_by_height,
+        order_by_mass,
+        order_by_gender,
+        order_by_name
+    )
 
 PAGES = {
     'people': 9,

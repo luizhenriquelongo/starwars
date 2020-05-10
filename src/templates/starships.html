@@ -3,22 +3,33 @@
 
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <title>Starships</title>
     </head>
-
     <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="/">Star Wars</a>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/">People</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/starships">Starships</a>
+              </li>
+            </ul>
+          </nav>
 
-        <div class="container">
+        <div style="overflow-y: auto; overflow-x: auto;" class="container">
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Model</th>
                         <th scope="col">Manufacturer</th>
-                        <th scope="col">length(m)</th>
+                        <th scope="col">Length(m)</th>
                         <th scope="col">Passengers</th>
                         <th scope="col">Cargo Capacity</th>
                         <th scope="col">Class</th>

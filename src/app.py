@@ -1,15 +1,19 @@
 from flask import Flask, render_template, request, make_response, jsonify, url_for, redirect, session
 from flask_paginate import Pagination
-from requester import get_all_resources
 from operator import itemgetter
 
-import settings
+try:
+    from src import settings
+    from src.requester import get_all_resources
+
+except ModuleNotFoundError:
+    import settings
+    from requester import get_all_resources
+
 
 app = Flask(__name__)
 resources = get_all_resources()
-app.config.update(
-    SECRET_KEY='starwars',
-)
+app.config.update(SECRET_KEY='starwars')
 
 
 @app.route("/", methods=['GET', 'POST'])

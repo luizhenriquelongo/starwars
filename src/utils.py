@@ -42,6 +42,7 @@ def string_to_float(text):
     else:
         return int(text)
 
+
 def calculate_score(hyperdrive_rating, cost_in_credits):
     hr = string_to_float(hyperdrive_rating)
     cc = string_to_float(cost_in_credits)
@@ -50,6 +51,7 @@ def calculate_score(hyperdrive_rating, cost_in_credits):
         return 0
     
     return hr / cc
+
 
 def filter_starships(data):
     score = calculate_score(data.get('hyperdrive_rating'), data.get('cost_in_credits'))
@@ -63,7 +65,7 @@ def filter_starships(data):
             'cargo_capacity': data.get('cargo_capacity').replace(',', '') if isinstance(data.get('cargo_capacity'), str) else data.get('cargo_capacity'),
             'starship_class': data.get('starship_class'),
             'pilots': data.get('pilots'),
-            'score': "{:.2e}".format(score)
+            'score': score
         } 
     }
 
@@ -133,3 +135,36 @@ def order_by_name(dic):
 
 def order_by_gender(dic):
     return itemgetter('gender')(dic)
+
+
+def filter_resources(resources):
+    people = resources['people']
+    
+    for url, value in people.items():
+
+        named_films = []
+        for film in value.get('films', []):
+            film_name = resources['films'].get(film, {}).get('title')
+            if film_name:
+                named_films.append(film_name)
+        people[url]['films'] = ', '.join(named_films)
+
+        named_starships = []
+        for starship in value.get('starships', []):
+            starship_name = resources['starships'].get(starship, {}).get('name')
+            if starship_name:
+                named_starships.append(starship_name)
+        people[url]['starships'] = ', '.join(named_starships)
+
+        named_vehicles = []
+        for vehicle in value.get('vehicles', []):
+            vehicle_name = resources['vehicles'].get(vehicle, {}).get('name')
+            if vehicle_name:
+                named_vehicles.append(vehicle_name)
+        people[url]['vehicles'] = ', '.join(named_vehicles)
+
+        people[url]['homeworld'] = resources['planets'].get(value.get('homeworld'), {}).get('name')
+
+    resources['people'] = people
+    
+    return resources
