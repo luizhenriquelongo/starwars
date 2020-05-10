@@ -23,7 +23,7 @@
             </ul>
         </nav>
 
-        <div style="overflow-y: auto; overflow-x: auto;" class="container">
+        <div style="overflow-y: auto; overflow-x: auto;" class="container-fluid">
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
@@ -64,10 +64,10 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container-fluid">
             <form method="POST" action='/'>
                 <p class="lead">Filters:</p>
-                <select class="form-control" name="films" onChange="this.form.submit()">
+                <select style="margin: 5px auto;" class="form-control" name="films" onChange="this.form.submit()">
                     <option selected>Select a film</option>
                     {% for url, data in resources.get('films').items() %}
                     <option value="{{ url }},{{ data['title'] }}">{{ data['title'] }}</option>
@@ -76,7 +76,7 @@
             </form>
             
             <form method="POST" action='/'>
-                <select class="form-control" name="starships" onChange="this.form.submit()">
+                <select style="margin: 5px auto;" class="form-control" name="starships" onChange="this.form.submit()">
                     <option class='option' selected>Select a starship</option>
                     {% for url, data in resources.get('starships').items() %}
                     <option class='option' value="{{ url }},{{ data['name'] }}">{{ data['name'] }}</option>
@@ -85,7 +85,7 @@
             </form>
             
             <form method="POST" action='/'>
-                <select class="form-control" name="planets" onChange="this.form.submit()">
+                <select style="margin: 5px auto;" class="form-control" name="planets" onChange="this.form.submit()">
                     <option selected>Select a planet</option>
                     {% for url, data in resources.get('planets').items() %}
                     <option value="{{ url }},{{ data['name'] }}">{{ data['name'] }}</option>
@@ -94,7 +94,7 @@
             </form>
             
             <form method="POST" action='/'>
-                <select class="form-control" name="vehicles" onChange="this.form.submit()">
+                <select style="margin: 5px auto;" class="form-control" name="vehicles" onChange="this.form.submit()">
                     <option selected>Select a vehicle</option>
                     {% for url, data in resources.get('vehicles').items() %}
                         <option value="{{ url }},{{ data['name'] }}">{{ data['name'] }}</option>
